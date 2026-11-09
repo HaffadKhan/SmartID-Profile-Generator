@@ -1,8 +1,489 @@
-/* --------------------------------------------------------------------------
-   EXACT TEXT POSITIONING (Aligned Perfectly Above Printed Guidelines)
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   SmartID Profile Generator - Final Production Stylesheet
+   ========================================================================== */
 
-/* 1. English Name (Left side under Name label) */
+:root {
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --primary-light: #e0f2fe;
+  --primary-glow: rgba(2, 132, 199, 0.2);
+
+  --accent-emerald: #059669;
+  --accent-emerald-hover: #047857;
+  --accent-emerald-bg: rgba(5, 150, 105, 0.14);
+
+  --bg-app: #0b1120;
+  --bg-surface: #1e293b;
+  --bg-surface-elevated: #243248;
+  --bg-input: #f8fafc;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-light: #cbd5e1;
+  --border-focus: #0284c7;
+
+  --text-main: #0f172a;
+  --text-muted: #94a3b8;
+  --text-light: #f8fafc;
+
+  --card-width: 540px;
+  --card-aspect: 576 / 358;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-card: 14px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 28px 55px -12px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(255, 255, 255, 0.14);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif;
+  --font-signature: 'Caveat', 'Dancing Script', 'Brush Script MT', cursive;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-light);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(2, 132, 199, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 88% 75%, rgba(5, 150, 105, 0.12) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+}
+
+/* Header */
+.app-header {
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.875rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary), #0284c7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.brand-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.28);
+  color: #38bdf8;
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Workspace Grid */
+.main-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.75rem 2rem;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(380px, 490px) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-xl);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.panel-desc {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.live-tag {
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: #34d399;
+  background: var(--accent-emerald-bg);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Form Controls */
+.id-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.form-group label {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  letter-spacing: 0.01em;
+}
+
+.input-hint {
+  font-size: 0.725rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.urdu-hint {
+  font-family: var(--font-urdu);
+  font-size: 0.875rem;
+  color: #34d399;
+  font-weight: 600;
+  direction: rtl;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  font-size: 0.95rem;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.input-wrap input,
+.input-wrap select {
+  width: 100%;
+  padding: 0.58rem 0.75rem 0.58rem 2.35rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-wrap input:hover,
+.input-wrap select:hover {
+  border-color: #94a3b8;
+}
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+  background-color: #ffffff;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.input-wrap select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
+}
+
+/* Upload Box */
+.file-upload-box {
+  position: relative;
+  border: 2px dashed rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-upload-box:hover,
+.file-upload-box.drag-active {
+  border-color: var(--primary);
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-dummy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.upload-icon {
+  font-size: 1.35rem;
+  margin-bottom: 0.1rem;
+}
+
+.upload-text {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.upload-main {
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.upload-hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Action Buttons */
+.action-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.btn-generate,
+.btn-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-generate {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.32);
+}
+
+.btn-generate:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-download {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.32);
+}
+
+.btn-download:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45);
+  transform: translateY(-1px);
+}
+
+.spin {
+  animation: spinAnim 1s linear infinite;
+}
+
+@keyframes spinAnim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ID Card Preview Panel */
+.preview-panel {
+  position: sticky;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-panel .panel-header {
+  width: 100%;
+}
+
+.preview-stage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 0;
+  gap: 1.5rem;
+}
+
+.id-card-wrapper {
+  width: 100%;
+  max-width: var(--card-width);
+}
+
+.id-card {
+  position: relative;
+  width: 100%;
+  max-width: var(--card-width);
+  aspect-ratio: var(--card-aspect);
+  background-image: url('NIC 2.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 auto;
+}
+
+.card-element {
+  position: absolute;
+  color: #050811;
+  line-height: 1.1;
+  pointer-events: none;
+  white-space: nowrap;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0;
+  z-index: 2;
+}
+
+.field-val {
+  display: inline-block;
+  color: #050811;
+  background: transparent !important;
+  letter-spacing: 0.01em;
+}
+
+.english-val {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #050811;
+}
+
+.urdu-val {
+  font-family: var(--font-urdu);
+  font-weight: 700;
+  color: #000000;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.25;
+}
+
+/* Exact Field Positioning (Aligned above red lines) */
 .card-field-name {
   top: 24.0%;
   left: 26.0%;
@@ -13,7 +494,6 @@
   font-weight: 800;
 }
 
-/* 2. Urdu Name (Right side above 1st line) */
 .card-field-urdu-name {
   top: 27.0%;
   left: 51.0%;
@@ -27,7 +507,6 @@
   font-weight: 700;
 }
 
-/* 3. Father Name English */
 .card-field-father {
   top: 45.0%;
   left: 26.0%;
@@ -38,7 +517,6 @@
   font-weight: 800;
 }
 
-/* 4. Father Name Urdu (Above 2nd line) */
 .card-field-urdu-father {
   top: 47.0%;
   left: 51.0%;
@@ -52,7 +530,6 @@
   font-weight: 700;
 }
 
-/* 5. Gender */
 .card-field-gender {
   top: 65.5%;
   left: 26.0%;
@@ -63,7 +540,6 @@
   font-weight: 800;
 }
 
-/* 6. Country of Stay */
 .card-field-country {
   top: 65.5%;
   left: 37.0%;
@@ -74,7 +550,6 @@
   font-weight: 700;
 }
 
-/* 7. Identity Number (CNIC) - Above 3rd line */
 .card-field-cnic {
   top: 77.5%;
   left: 26.0%;
@@ -86,7 +561,6 @@
   letter-spacing: 0.02em;
 }
 
-/* 8. Date of Birth - Above 3rd line right */
 .card-field-dob {
   top: 77.5%;
   left: 52.5%;
@@ -98,7 +572,6 @@
   letter-spacing: 0.01em;
 }
 
-/* 9. Date of Issue - Above bottom line */
 .card-field-issue {
   top: 90.0%;
   left: 26.0%;
@@ -110,7 +583,6 @@
   letter-spacing: 0.01em;
 }
 
-/* 10. Date of Expiry - Above bottom line right */
 .card-field-expiry {
   top: 90.0%;
   left: 52.5%;
@@ -122,7 +594,6 @@
   letter-spacing: 0.01em;
 }
 
-/* 11. Profile Photo Container */
 .card-photo-box {
   top: 17.0%;
   left: 71.5%;
@@ -143,7 +614,13 @@
   background: #ffffff !important;
 }
 
-/* 12. Signature Box - Above Holder's Signature line */
+.card-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .card-signature-box {
   top: 72.0%;
   left: 71.5%;
@@ -154,4 +631,93 @@
   justify-content: center;
   background: transparent !important;
   z-index: 3;
+}
+
+.signature-text-val {
+  font-family: var(--font-signature);
+  font-size: clamp(14px, 3.5vw, 22px);
+  font-weight: 700;
+  color: #0a1f44;
+  letter-spacing: 0.02em;
+  transform: rotate(-3deg);
+  background: transparent !important;
+}
+
+/* Meta Footer */
+.preview-meta {
+  width: 100%;
+  max-width: var(--card-width);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.95rem;
+  gap: 0.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.meta-title {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.meta-detail {
+  font-size: 0.725rem;
+  color: #e2e8f0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-ready {
+  color: #34d399;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 2rem 2.5rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.775rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .preview-panel {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-wrapper {
+    padding: 1rem;
+  }
+  .header-container {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-row.two-cols {
+    grid-template-columns: 1fr;
+  }
+  .action-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+  .preview-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
 }
