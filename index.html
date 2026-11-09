@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartID Profile Generator</title>
+  <!-- Google Fonts: Inter for UI & Card Text, Noto Nastaliq Urdu for Urdu Text, Caveat for Signature -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- html2canvas Library for High-Resolution Card Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+            <circle cx="7" cy="15" r="1"></circle>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">SmartID Profile Generator</h1>
+          <p class="brand-subtitle">Smart National Identity Card Generator &bull; Auto English-to-Urdu Transliteration</p>
+        </div>
+      </div>
+      <div class="header-badge">
+        <span class="pulse-dot"></span> Real-time Urdu Alignment &bull; PNG Export Ready
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Split-Screen Workspace -->
+  <main class="main-wrapper">
+    <div class="workspace-grid">
+
+      <!-- Left Column: Form Panel -->
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2 class="panel-title">Holder Information</h2>
+            <p class="panel-desc">Enter details in English; Urdu transliteration is automatically generated in real-time.</p>
+          </div>
+        </div>
+
+        <form id="idGeneratorForm" class="id-form" onsubmit="event.preventDefault();">
+          
+          <!-- Full Name (English) -->
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. MUHAMMAD ALI" autocomplete="off" required>
+            </div>
+            <span class="input-hint">Urdu script auto-generated: <strong id="liveUrduNameHint" class="urdu-hint">محمد علی</strong></span>
+          </div>
+
+          <!-- Father's Name (English) -->
+          <div class="form-group">
+            <label for="fatherName">Father's Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👨</span>
+              <input type="text" id="fatherName" name="fatherName" placeholder="e.g. TARIQ MEHMOOD" autocomplete="off" required>
+            </div>
+            <span class="input-hint">Urdu script auto-generated: <strong id="liveUrduFatherHint" class="urdu-hint">طارق محمود</strong></span>
+          </div>
+
+          <!-- Gender & Country of Stay Row -->
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <div class="input-wrap">
+                <span class="input-icon">⚧</span>
+                <select id="gender" name="gender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male (M)</option>
+                  <option value="Female">Female (F)</option>
+                  <option value="Other">Other (O)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country of Stay</label>
+              <div class="input-wrap">
+                <span class="input-icon">🌐</span>
+                <input type="text" id="country" name="country" placeholder="e.g. Pakistan" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Identity Number & Date of Birth Row -->
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label for="identityNumber">Identity Number (CNIC)</label>
+              <div class="input-wrap">
+                <span class="input-icon">🪪</span>
+                <input type="text" id="identityNumber" name="identityNumber" placeholder="42101-1234567-1" maxlength="15" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth (DD/MM/YYYY)</label>
+              <div class="input-wrap">
+                <span class="input-icon">📅</span>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Issue Date & Expiry Date Row -->
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label for="issueDate">Date of Issue (DD/MM/YYYY)</label>
+              <div class="input-wrap">
+                <span class="input-icon">🗓️</span>
+                <input type="date" id="issueDate" name="issueDate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="expiryDate">Date of Expiry (DD/MM/YYYY)</label>
+              <div class="input-wrap">
+                <span class="input-icon">⏳</span>
+                <input type="date" id="expiryDate" name="expiryDate">
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Picture Upload -->
+          <div class="form-group">
+            <label for="profilePic">Profile Picture Upload</label>
+            <div class="file-upload-box" id="fileUploadContainer">
+              <input type="file" id="profilePic" name="profilePic" accept="image/*" class="file-input">
+              <div class="upload-dummy">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">
+                  <span class="upload-main">Click to browse</span> or drag photo here
+                </div>
+                <span class="upload-hint">Passport photo format (PNG, JPG, or JPEG)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Signature Text Input -->
+          <div class="form-group">
+            <label for="signatureText">Signature Text Input</label>
+            <div class="input-wrap">
+              <span class="input-icon">✍️</span>
+              <input type="text" id="signatureText" name="signatureText" placeholder="e.g. M. Ali" autocomplete="off" required>
+            </div>
+          </div>
+
+          <!-- Action Buttons Row -->
+          <div class="action-buttons-grid">
+            <button type="submit" id="generateBtn" class="btn-generate">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+              Generate ID Card
+            </button>
+
+            <button type="button" id="downloadBtn" class="btn-download">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download ID Card
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Right Column: ID Card Preview Panel -->
+      <section class="panel preview-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2 class="panel-title">ID Card Preview Panel</h2>
+            <p class="panel-desc">Seamless transparent text overlays on 'NIC 2.jpg' background</p>
+          </div>
+          <span class="live-tag">● Live Preview</span>
+        </div>
+
+        <div class="preview-stage">
+          <!-- Outer Card Scale Container -->
+          <div class="id-card-wrapper">
+            
+            <!-- Standard ID Card Template Container -->
+            <div class="id-card" id="idCardPreview">
+              
+              <!-- Background Card Image DOM Node for html2canvas Reliability -->
+              <img id="cardBgImage" class="card-bg-image" src="NIC 2.jpg">
+
+              <!-- 1. Full Name (English) Overlay: Left-side under "Name" -->
+              <div class="card-element card-field-name">
+                <span class="field-val english-val" id="cardName">MUHAMMAD ALI</span>
+              </div>
+
+              <!-- 2. Urdu Name Overlay: Right-middle section, aligning above Father Name line -->
+              <div class="card-element card-field-urdu-name">
+                <span class="field-val urdu-val" id="cardUrduName">محمد علی</span>
+              </div>
+
+              <!-- 3. Father's Name (English) Overlay: Left-side under "Father Name" -->
+              <div class="card-element card-field-father">
+                <span class="field-val english-val" id="cardFatherName">TARIQ MEHMOOD</span>
+              </div>
+
+              <!-- 4. Urdu Father's Name Overlay: Right-middle section, aligning above Gender line -->
+              <div class="card-element card-field-urdu-father">
+                <span class="field-val urdu-val" id="cardUrduFatherName">طارق محمود</span>
+              </div>
+
+              <!-- 5. Gender Overlay: Left-side under "Gender" -->
+              <div class="card-element card-field-gender">
+                <span class="field-val mono-val" id="cardGender">M</span>
+              </div>
+
+              <!-- 6. Country of Stay Overlay: Middle under "Country of Stay" -->
+              <div class="card-element card-field-country">
+                <span class="field-val mono-val" id="cardCountry">Pakistan</span>
+              </div>
+
+              <!-- 7. Identity Number Overlay: Left under "Identity Number" -->
+              <div class="card-element card-field-cnic">
+                <span class="field-val mono-val" id="cardCnic">42101-1234567-1</span>
+              </div>
+
+              <!-- 8. Date of Birth (DD/MM/YYYY) Overlay -->
+              <div class="card-element card-field-dob">
+                <span class="field-val mono-val" id="cardDob">10/11/1987</span>
+              </div>
+
+              <!-- 9. Date of Issue (DD/MM/YYYY) Overlay -->
+              <div class="card-element card-field-issue">
+                <span class="field-val mono-val" id="cardIssueDate">09/11/2026</span>
+              </div>
+
+              <!-- 10. Date of Expiry (DD/MM/YYYY) Overlay -->
+              <div class="card-element card-field-expiry">
+                <span class="field-val mono-val" id="cardExpiryDate">09/11/2036</span>
+              </div>
+
+              <!-- 11. Main Profile Photo Box (ONLY main right-side container) -->
+              <div class="card-element card-photo-box" id="cardPhotoBox">
+                <div class="photo-placeholder-content">
+                  <svg class="photo-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span class="photo-label">PHOTO</span>
+                </div>
+              </div>
+
+              <!-- 12. Signature Box Overlay: Above "Holder's Signature" -->
+              <div class="card-element card-signature-box" id="cardSignatureBox">
+                <span class="signature-text-val" id="cardSignatureText">M. Ali</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Metadata & Template Information -->
+          <div class="preview-meta">
+            <div class="meta-item">
+              <span class="meta-title">Card Format</span>
+              <span class="meta-detail">CR80 (ISO/IEC 7810)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-title">Template Asset</span>
+              <span class="meta-detail">NIC 2.jpg</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-title">Urdu Typography</span>
+              <span class="meta-detail status-ready">Noto Nastaliq Urdu</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-title">Export Feature</span>
+              <span class="meta-detail status-ready">SmartID_Card.png (2×)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Application Footer -->
+  <footer class="app-footer">
+    <p>SmartID Profile Generator &bull; Pakistani Smart National ID Generator &bull; Urdu &amp; English Dual-Script</p>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
