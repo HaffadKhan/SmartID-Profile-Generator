@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SmartID Profile Generator - Final Production Stylesheet
+   SmartID Profile Generator - Final Perfect Alignment Stylesheet
    ========================================================================== */
 
 :root {
@@ -483,19 +483,24 @@ body {
   line-height: 1.25;
 }
 
-/* Exact Field Positioning (Aligned above red lines) */
+/* ==========================================================================
+   FINAL PERFECT ALIGNMENT (Har Field ki Asli Line par Setting)
+   ========================================================================== */
+
+/* 1. Full Name (English) - Left side, perfectly aligned above 1st line */
 .card-field-name {
-  top: 24.0%;
+  top: 27.5%;
   left: 26.0%;
   width: 25.0%;
 }
 .card-field-name .field-val {
-  font-size: clamp(10px, 2.2vw, 14px);
+  font-size: clamp(10px, 2.2vw, 13.5px);
   font-weight: 800;
 }
 
+/* 2. Urdu Name - Right side, aligned above 1st line */
 .card-field-urdu-name {
-  top: 27.0%;
+  top: 30.5%;
   left: 51.0%;
   width: 19.5%;
   display: flex;
@@ -503,22 +508,24 @@ body {
   text-align: right;
 }
 .card-field-urdu-name .field-val {
-  font-size: clamp(12px, 2.8vw, 17px);
+  font-size: clamp(12px, 2.7vw, 16px);
   font-weight: 700;
 }
 
+/* 3. Father Name (English) - Left side, aligned above 2nd line */
 .card-field-father {
-  top: 45.0%;
+  top: 48.0%;
   left: 26.0%;
   width: 25.0%;
 }
 .card-field-father .field-val {
-  font-size: clamp(9px, 2.1vw, 13px);
+  font-size: clamp(9.5px, 2.1vw, 13px);
   font-weight: 800;
 }
 
+/* 4. Urdu Father Name - Right side, aligned above 2nd line */
 .card-field-urdu-father {
-  top: 47.0%;
+  top: 50.5%;
   left: 51.0%;
   width: 19.5%;
   display: flex;
@@ -526,12 +533,13 @@ body {
   text-align: right;
 }
 .card-field-urdu-father .field-val {
-  font-size: clamp(12px, 2.8vw, 17px);
+  font-size: clamp(12px, 2.7vw, 16px);
   font-weight: 700;
 }
 
+/* 5. Gender - Left column, aligned above 3rd line */
 .card-field-gender {
-  top: 65.5%;
+  top: 69.5%;
   left: 26.0%;
   width: 10.0%;
 }
@@ -540,8 +548,9 @@ body {
   font-weight: 800;
 }
 
+/* 6. Country of Stay - Middle column, aligned above 3rd line */
 .card-field-country {
-  top: 65.5%;
+  top: 69.5%;
   left: 37.0%;
   width: 28.0%;
 }
@@ -550,8 +559,9 @@ body {
   font-weight: 700;
 }
 
+/* 7. Identity Number (CNIC) - Aligned above bottom-middle line */
 .card-field-cnic {
-  top: 77.5%;
+  top: 83.5%;
   left: 26.0%;
   width: 25.0%;
 }
@@ -561,8 +571,9 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* 8. Date of Birth - Aligned right side above bottom-middle line */
 .card-field-dob {
-  top: 77.5%;
+  top: 83.5%;
   left: 52.5%;
   width: 18.0%;
 }
@@ -572,8 +583,9 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* 9. Date of Issue - Aligned above very bottom line */
 .card-field-issue {
-  top: 90.0%;
+  top: 95.0%;
   left: 26.0%;
   width: 25.0%;
 }
@@ -583,8 +595,9 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* 10. Date of Expiry - Aligned right side above very bottom line */
 .card-field-expiry {
-  top: 90.0%;
+  top: 95.0%;
   left: 52.5%;
   width: 18.0%;
 }
@@ -594,6 +607,7 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* 11. Profile Photo Box - Right side proper bounds */
 .card-photo-box {
   top: 17.0%;
   left: 71.5%;
@@ -621,6 +635,7 @@ body {
   display: block;
 }
 
+/* 12. Signature Box - Centered horizontally on the right bottom signature area */
 .card-signature-box {
   top: 72.0%;
   left: 71.5%;
