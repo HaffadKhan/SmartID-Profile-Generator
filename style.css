@@ -868,3 +868,26 @@ body {
     gap: 0.6rem;
   }
 }
+
+/* Mobile Portrait Screen Fix */
+@media screen and (max-width: 600px) {
+  /* ID card container ko mobile screen ke mutabiq scale down karne ke liye */
+  .id-card-preview-container, #idCardPreview {
+    width: 100% !important;
+    max-width: 350px !important;
+    height: auto !important;
+    aspect-ratio: 1.58 / 1; /* Standard ID card ratio */
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  /* Saare text overlays ka font-size mobile par chota karne ke liye */
+  .id-card-preview-container *, #idCardPreview * {
+    font-size: calc(0.6rem + 0.4vw) !important;
+  }
+
+  /* Agar aapne specific text classes ko alag-alag coordinates diye hain, 
+     toh yahan unka font size mazeed adjust kar sakte hain */
+}
