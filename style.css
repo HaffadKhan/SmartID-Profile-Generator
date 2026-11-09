@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SmartID Profile Generator - Final Perfect Alignment Stylesheet
+   SmartID Profile Generator - Final Production Stylesheet
    ========================================================================== */
 
 :root {
@@ -447,9 +447,19 @@ body {
   margin: 0 auto;
 }
 
+.card-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
+}
+
 .card-element {
   position: absolute;
-  color: #050811;
+  color: #000000 !important;
   line-height: 1.1;
   pointer-events: none;
   white-space: nowrap;
@@ -462,157 +472,29 @@ body {
 
 .field-val {
   display: inline-block;
-  color: #050811;
+  color: #000000 !important;
   background: transparent !important;
-  letter-spacing: 0.01em;
+  font-weight: 800 !important;
 }
 
-.english-val {
+.english-val, .mono-val {
   font-family: var(--font-sans);
-  font-weight: 800;
+  font-weight: 800 !important;
   text-transform: uppercase;
-  color: #050811;
+  color: #000000 !important;
 }
 
 .urdu-val {
   font-family: var(--font-urdu);
-  font-weight: 700;
-  color: #000000;
+  font-weight: 700 !important;
+  color: #000000 !important;
   direction: rtl;
   text-align: right;
   line-height: 1.25;
 }
 
-/* ==========================================================================
-   FINAL PERFECT ALIGNMENT (Har Field ki Asli Line par Setting)
-   ========================================================================== */
-
-/* 1. Full Name (English) - Left side, perfectly aligned above 1st line */
-.card-field-name {
-  top: 27.5%;
-  left: 26.0%;
-  width: 25.0%;
-}
-.card-field-name .field-val {
-  font-size: clamp(10px, 2.2vw, 13.5px);
-  font-weight: 800;
-}
-
-/* 2. Urdu Name - Right side, aligned above 1st line */
-.card-field-urdu-name {
-  top: 30.5%;
-  left: 51.0%;
-  width: 19.5%;
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
-}
-.card-field-urdu-name .field-val {
-  font-size: clamp(12px, 2.7vw, 16px);
-  font-weight: 700;
-}
-
-/* 3. Father Name (English) - Left side, aligned above 2nd line */
-.card-field-father {
-  top: 48.0%;
-  left: 26.0%;
-  width: 25.0%;
-}
-.card-field-father .field-val {
-  font-size: clamp(9.5px, 2.1vw, 13px);
-  font-weight: 800;
-}
-
-/* 4. Urdu Father Name - Right side, aligned above 2nd line */
-.card-field-urdu-father {
-  top: 50.5%;
-  left: 51.0%;
-  width: 19.5%;
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
-}
-.card-field-urdu-father .field-val {
-  font-size: clamp(12px, 2.7vw, 16px);
-  font-weight: 700;
-}
-
-/* 5. Gender - Left column, aligned above 3rd line */
-.card-field-gender {
-  top: 69.5%;
-  left: 26.0%;
-  width: 10.0%;
-}
-.card-field-gender .field-val {
-  font-size: clamp(9px, 2vw, 12px);
-  font-weight: 800;
-}
-
-/* 6. Country of Stay - Middle column, aligned above 3rd line */
-.card-field-country {
-  top: 69.5%;
-  left: 37.0%;
-  width: 28.0%;
-}
-.card-field-country .field-val {
-  font-size: clamp(9px, 2vw, 12px);
-  font-weight: 700;
-}
-
-/* 7. Identity Number (CNIC) - Aligned above bottom-middle line */
-.card-field-cnic {
-  top: 83.5%;
-  left: 26.0%;
-  width: 25.0%;
-}
-.card-field-cnic .field-val {
-  font-size: clamp(8.5px, 2vw, 12px);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-}
-
-/* 8. Date of Birth - Aligned right side above bottom-middle line */
-.card-field-dob {
-  top: 83.5%;
-  left: 52.5%;
-  width: 18.0%;
-}
-.card-field-dob .field-val {
-  font-size: clamp(8.5px, 1.8vw, 11px);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
-/* 9. Date of Issue - Aligned above very bottom line */
-.card-field-issue {
-  top: 95.0%;
-  left: 26.0%;
-  width: 25.0%;
-}
-.card-field-issue .field-val {
-  font-size: clamp(8px, 1.7vw, 11px);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
-/* 10. Date of Expiry - Aligned right side above very bottom line */
-.card-field-expiry {
-  top: 95.0%;
-  left: 52.5%;
-  width: 18.0%;
-}
-.card-field-expiry .field-val {
-  font-size: clamp(8px, 1.7vw, 11px);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
-/* 11. Profile Photo Box - Right side proper bounds */
+/* Profile Photo Box Container */
 .card-photo-box {
-  top: 17.0%;
-  left: 71.5%;
-  width: 23.5%;
-  height: 50.5%;
   border-radius: 4px;
   border: 1.5px dashed rgba(2, 132, 199, 0.45);
   background: rgba(255, 255, 255, 0.3) !important;
@@ -635,12 +517,16 @@ body {
   display: block;
 }
 
-/* 12. Signature Box - Centered horizontally on the right bottom signature area */
+.photo-placeholder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #0284c7;
+}
+
+/* Signature Box Container */
 .card-signature-box {
-  top: 72.0%;
-  left: 71.5%;
-  width: 25.5%;
-  height: 19.0%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -650,9 +536,8 @@ body {
 
 .signature-text-val {
   font-family: var(--font-signature);
-  font-size: clamp(14px, 3.5vw, 22px);
-  font-weight: 700;
-  color: #0a1f44;
+  font-weight: 700 !important;
+  color: #0a1f44 !important;
   letter-spacing: 0.02em;
   transform: rotate(-3deg);
   background: transparent !important;
@@ -704,7 +589,7 @@ body {
   font-size: 0.775rem;
 }
 
-/* Media Queries for Responsiveness */
+/* Media Queries */
 @media (max-width: 1024px) {
   .workspace-grid {
     grid-template-columns: 1fr;
